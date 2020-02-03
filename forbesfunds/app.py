@@ -4,7 +4,6 @@ import numpy as np
 from flask import Flask,request, render_template, make_response
 #from werkzeug import secure_filename
 import os
-#import magic
 import urllib.request
 #UPLOAD_FOLDER = '/'
 
