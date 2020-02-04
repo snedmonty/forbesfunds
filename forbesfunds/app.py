@@ -21,7 +21,7 @@ def gecsv():
 		f = request.files['file']
 		f.save(f.filename)
 		import pandas as pd
-		wb = pd.ExcelFile('Insightly Template and Data_12042019.xlsx')
+		wb = pd.ExcelFile(f.filename)
 		template=pd.read_excel('Insightly Template and Data_12042019.xlsx',wb.sheet_names[0])
 		needs=pd.read_excel('Insightly Template and Data_12042019.xlsx',wb.sheet_names[3])
 		data=pd.read_excel('Insightly Template and Data_12042019.xlsx',wb.sheet_names[4])
@@ -48,7 +48,7 @@ def gecsv():
 		address=temp.drop_duplicates(subset='RecipientName', keep="first")
 		address.rename(columns={'RecipientName':'Name of organization','RecipientAddressBlock':'Street Address','RecipientCity':'City','RecipientState':'State','RecipientZip':'Zip','RecipientFullAddress':'FullAddress'}, inplace=True)
 		org_and_address=finalpd.merge(address, on='Name of organization', how='left')
-		#newone.to_csv('Insightly.csv', encoding='utf-8', index=False)
+		os.remove(f.filename)#newone.to_csv('Insightly.csv', encoding='utf-8', index=False)
 		resp = make_response(org_and_address.to_csv())
 		resp.headers["Content-Disposition"] = "attachment; filename=Insightly.csv"
 		resp.headers["Content-Type"] = "text/csv"
