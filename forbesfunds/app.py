@@ -46,7 +46,7 @@ def gecsv():
 		address.rename(columns={'RecipientName':'Name of organization','RecipientAddressBlock':'Street Address','RecipientCity':'City','RecipientState':'State','RecipientZip':'Zip','RecipientFullAddress':'FullAddress'}, inplace=True)
 		org_and_address=finalpd.merge(address, on='Name of organization', how='left')		
 		os.system(f"rm -f '{f.filename}'")
-		resp = make_response(org_and_address.to_csv())
+		resp = make_response(org_and_address.to_csv(index=False))
 		resp.headers["Content-Disposition"] = "attachment; filename=Insightly.csv"
 		resp.headers["Content-Type"] = "text/csv"
 		return resp
