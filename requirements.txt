@@ -1,6 +1,6 @@
 gunicorn==19.9.0
 Flask==1.1.1
-Werkzeug==0.15.6
+Werkzeug==2.2.3
 numba==0.41.0
 numexpr==2.6.8
 numpy==1.15.4
